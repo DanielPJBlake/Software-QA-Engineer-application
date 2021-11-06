@@ -1,0 +1,44 @@
+package program;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Selenium {
+
+	public static void main(String[] args) {
+		// Initializing chrome driver, May have need to change chrome diver path.
+		
+		System.setProperty("webdriver.chrome.driver","C:\\ChromeDriver\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+		// Getting assignment webpage
+		driver.get("https://hotel.testplanisphere.dev/ja/login.html");
+		
+		//finding the email input box on page and inputting selected email
+		driver.findElement(By.id("email")).sendKeys("email@gmail.com");
+		
+		//finding the password input box on page and inputting selected password
+		driver.findElement(By.id("password")).sendKeys("elephant");
+		
+		//click login
+		driver.findElement(By.id("login-button")).click();
+		
+		//testing to see if successful login page matches login page, however test always fails because 
+		//instance of a registered user isn't saved into site database after the site is closed
+		
+		String s = driver.getCurrentUrl();
+		
+		if(s.equals("https://hotel.testplanisphere.dev/ja/mypage.html"))
+		{
+			System.out.println("Test Case Passed");
+		}
+		else
+		{
+			System.out.println("Test Case Failed");
+		}
+		
+		
+	}
+
+}
